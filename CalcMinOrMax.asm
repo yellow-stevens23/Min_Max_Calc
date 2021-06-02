@@ -4,20 +4,20 @@
 
 ; find min
 SignedMin proc
-		push ebp
+		push ebp			; prologue
 		mov ebp, esp
 		mov eax, [ebp+8]		; eax = 'a'
 		mov ecx, [ebp+12]		; ecx = 'b'
 		cmp eax, ecx
-		jle @F					; jump to nearest @@ symbol if less than or =
+		jle @F				; jump to nearest @@ symbol if less than or =
 		mov eax, ecx			; eax = smallest of a or b
 
-	@@:	mov ecx, [ebp+16]
+	@@:	mov ecx, [ebp+16]		; ecx = 'c'
 		cmp eax, ecx
 		jle @F
 		mov eax, ecx			; eax = smallest of a, b or c
 
-	@@: pop ebp
+	@@: pop ebp				; epilogue
 		ret
 
 SignedMin endp
